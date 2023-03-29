@@ -26,9 +26,7 @@ export default function App() {
           
             headerTitleStyle: {
               fontWeight: "bold",
-              paddingVertical: 10, 
-              paddingHorizontal: 10, 
-          
+              paddingVertical: 5, 
               color: 'black',
             },
             headerTransparent: true,

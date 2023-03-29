@@ -150,19 +150,19 @@ return (
         <View style={styles.bottomNav}>
          <View style={styles.bottomNav}>
           <TouchableOpacity style={styles.navItem}>
-            <Icon name="home" type="font-awesome" size={30} color="#FFFFFF" />
+            <Icon name="home" type="font-awesome" size={30} color="#454145" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('ShoppingList')}>
-            <Icon name="shopping-cart" type="font-awesome" size={30} color="#FFFFFF" />
+            <Icon name="shopping-cart" type="font-awesome" size={30} color="#454145" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AddProduct')}>
-            <Icon name="plus" type="font-awesome" size={30} color="#FFFFFF" />
+            <Icon name="plus" type="font-awesome" size={30} color="#454145" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem}>
-            <Icon name="calendar" type="font-awesome" size={30} color="#FFFFFF" />
+            <Icon name="calendar" type="font-awesome" size={30} color="#454145" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem}>
-            <Icon name="cog" type="font-awesome" size={30} color="#FFFFFF" />
+            <Icon name="cog" type="font-awesome" size={30} color="#454145" />
           </TouchableOpacity>
         </View>
     </View>
@@ -392,7 +392,7 @@ return (
     },
     clay: {
       position: 'absolute',
-      top: 30,
+      top: 35,
       right: 80,
       width: 150,
       height: 150,
