@@ -13,7 +13,16 @@ export default function AddProductScreen({ navigation}) {
   const [stores, setStores] = useState([]);
   const shiba = require('../assets/shiba.jpeg');
 
+  const validatePriceFormat = (input) => {
+    const regex = /^\d+(\.\d{0,2})?$/;
+    return regex.test(input);
+  };
 
+  const onChangeTextPrice = (text) => {
+    if (validatePriceFormat(text)) {
+      setPrice(text);
+    }
+  };
   const saveProduct = async () => {
     const product = {
       id: Date.now(),
@@ -75,64 +84,64 @@ export default function AddProductScreen({ navigation}) {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-    <View style={styles.row}>
-          <View style={styles.thumbnailContainer}>
-            <Image
-              source={thumbnail ? { uri: thumbnail } : shiba}
-              style={styles.thumbnail}
-              resizeMode="cover"
-            />
-          </View>
-          <View style={styles.content}>
-            <Text style={styles.label}>Product Name:</Text>
-            <TextInput
-              value={name}
-              onChangeText={setName}
-              placeholder="Enter product name"
-              style={styles.input}
-            />
-          </View>
-          </View>
-          <Text style={[styles.label, { marginTop: 40 }]}>Price:</Text>
-        <TextInput
-          value={price}
-          onChangeText={setPrice}
-          placeholder="Enter price"
-          keyboardType="numeric"
-          style={styles.input}
-        />
-        <Text style={styles.label}>Store:</Text>
-        <TextInput
-          value={store}
-          onChangeText={setStore}
-          placeholder="Enter store name"
-          style={styles.input}
-        />
-        <View style={styles.storeSuggestions}>
-          {stores.map((suggestion, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.storeSuggestionCard}
-              onPress={() => setStore(suggestion)}
-            >
-              <Text style={styles.storeSuggestionText}>{suggestion}</Text>
-            </TouchableOpacity>
-          ))}
+      <View style={styles.row}>
+        <View style={styles.thumbnailContainer}>
+          <Image
+            source={thumbnail ? { uri: thumbnail } : shiba}
+            style={styles.thumbnail}
+            resizeMode="cover"
+          />
         </View>
+        <View style={styles.content}>
+          <Text style={styles.label}>Product Name:</Text>
+          <TextInput
+            value={name}
+            onChangeText={setName}
+            placeholder="Enter product name"
+            style={styles.input}
+            maxLength={20}
+          />
+        </View>
+      </View>
+      <Text style={[styles.label, { marginTop: 40 }]}>Price:</Text>
+      <TextInput
+        value={price}
+        onChangeText={onChangeTextPrice} // Use custom onChangeText for price
+        placeholder="Enter price"
+        keyboardType="numeric"
+        style={styles.input}
+      />  
+      <Text style={styles.label}>Store:</Text>
+       <TextInput
+        value={store}
+        onChangeText={setStore}
+        placeholder="Enter store name"
+        style={styles.input}
+        maxLength={20}
+      />
+      <View style={styles.storeSuggestions}>
+        {stores.map((suggestion, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.storeSuggestionCard}
+            onPress={() => setStore(suggestion)}
+          >
+            <Text style={styles.storeSuggestionText}>{suggestion}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-        <TouchableOpacity onPress={takePhoto} style={styles.button}>
-          <Text style={styles.buttonText}>Take Photo</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={takePhoto} style={styles.button}>
+        <Text style={styles.buttonText}>Take Photo</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity onPress={saveProduct} style={styles.saveP}>
-          <Text style={styles.buttonText}>Save Product</Text>
-        </TouchableOpacity>
-  
+      <TouchableOpacity onPress={saveProduct} style={styles.saveP}>
+        <Text style={styles.buttonText}>Save Product</Text>
+      </TouchableOpacity>
     </KeyboardAvoidingView>
   );
-  
-  
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

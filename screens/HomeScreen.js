@@ -8,8 +8,10 @@ import { Card } from 'react-native-elements';
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
 export default function HomeScreen({ navigation }) {
     const [products, setProducts] = useState([]);
+    const clay = require('../assets/clay.png');
 
     const refreshProducts = async () => {
       const storedProducts = await AsyncStorage.getItem('products');
@@ -59,7 +61,7 @@ export default function HomeScreen({ navigation }) {
       let previousDate;
       let formattedCurrentDate;
       let formattedPreviousDate;
-      console.log("item.createdAt:", item.createdAt); 
+    
       try {
         currentDate = new Date(item.createdAt);
         formattedCurrentDate = currentDate.toLocaleDateString();
@@ -94,16 +96,17 @@ return (
               <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
             )}
             <View style={styles.itemDetails}>
-              <View>
-                <View style={styles.storeNameCard}>
-                  <Text style={styles.storeName}>{item.store}</Text>
-                </View>
-                <Text style={styles.itemName}>{item.name}</Text>
+            <View style={styles.textContainer}>
+              <View style={styles.storeNameCard}>
+                <Text style={styles.storeName}>{item.store}</Text>
               </View>
-              <Text style={styles.itemPrice}>${item.price}</Text>
+              <Text style={styles.itemName}>{item.name}</Text>
             </View>
+            <Text style={styles.itemPrice}>${parseFloat(item.price).toFixed(2)}</Text>
+
           </View>
-        </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
       </Swipeable>
     
   </>
@@ -122,7 +125,7 @@ return (
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
     >
-  
+  <Image source={clay} style={styles.clay} />
   <View style={styles.contentContainer}>
         <View style={styles.cardRow}>
           <View style={styles.card}>
@@ -149,7 +152,7 @@ return (
           <TouchableOpacity style={styles.navItem}>
             <Icon name="home" type="font-awesome" size={30} color="#FFFFFF" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
+          <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('ShoppingList')}>
             <Icon name="shopping-cart" type="font-awesome" size={30} color="#FFFFFF" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AddProduct')}>
@@ -217,7 +220,7 @@ return (
     },
     contentContainer: {
       flex: 1,
-      paddingTop: 20,
+      paddingTop: 80,
       paddingHorizontal: 5,
       backgroundColor: 'transparent', // Add this line to make the background transparent
     },
@@ -230,7 +233,7 @@ return (
     card: {
       borderRadius: 10,
       borderWidth: 1,
-      borderColor: '#E0E0E0',
+      borderColor: '#fff',
       padding: 5,
       margin: 5,
       color: '36DDE0',
@@ -293,11 +296,11 @@ return (
      
     },
     itemName: {
-      fontSize: 18,
+      fontSize: 14,
     },
     itemText: {
-      fontSize: 18,
-  
+      fontSize: 14,
+      fontFamily: 'monospace',
     },
   
     itemPrice: {
@@ -386,5 +389,18 @@ return (
       fontSize: 14,
       fontWeight: 'bold',
       color: '#FFFFFF',
+    },
+    clay: {
+      position: 'absolute',
+      top: 30,
+      right: 100,
+      width: 150,
+      height: 150,
+      borderRadius: 15,
+    },
+    textContainer: {
+      flex: 1,
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
     },
   });
