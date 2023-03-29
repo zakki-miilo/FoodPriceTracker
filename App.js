@@ -22,14 +22,14 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            headerTitle: "Hello",
-            headerTitleAlign: "center",
+            headerTitle: "Price Record",
+          
             headerTitleStyle: {
               fontWeight: "bold",
               paddingVertical: 10, 
               paddingHorizontal: 10, 
           
-              color: 'white',
+              color: 'black',
             },
             headerTransparent: true,
           }}

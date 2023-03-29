@@ -393,7 +393,7 @@ return (
     clay: {
       position: 'absolute',
       top: 30,
-      right: 100,
+      right: 80,
       width: 150,
       height: 150,
       borderRadius: 15,
