@@ -1,4 +1,4 @@
-**Food Tracker App **- README
+**Food Tracker App**
 Welcome to the Food Tracker App, a solo project developed in React!
 
 **Description**
